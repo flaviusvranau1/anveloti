@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Auto Anveloti — Service Anvelope Unirea</title>
+<meta name="description" content="Anvelope premium, vulcanizare, geometrie și hotel anvelope în Unirea. Aderență totală, control absolut — pe orice drum, în orice anotimp." />
+<meta property="og:title" content="Auto Anveloti — Service Anvelope Unirea" />
+<meta property="og:description" content="Anvelope premium și service complet în Unirea. Aderență totală. Control absolut." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c0f;
+  --bg2:#0f1318;
+  --panel:#10151b;
+  --ink:#eef2f6;
+  --muted:#8a95a1;
+  --muted2:#5f6873;
+  --accent:#5aa9e6;       /* steel blue, used sparingly */
+  --accent-dim:#3d7aa8;
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.14);
+  --maxw:1280px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#06080a}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.display{font-family:'Sora',sans-serif;letter-spacing:-.02em;line-height:1}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.7}
+
+/* loader */
+#loader{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;transition:opacity .7s,visibility .7s}
+#loader.hide{opacity:0;visibility:hidden}
+.lmark{font-family:'Sora';font-weight:800;font-size:clamp(22px,4vw,34px);letter-spacing:.04em}
+.lmark .b{color:var(--accent)}
+.lbar{width:min(240px,55vw);height:2px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.lbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.lsub{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted2)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,4vw,56px);transition:.4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(10,12,15,.8);backdrop-filter:blur(16px);border-color:var(--line);padding-top:14px;padding-bottom:14px}
+.brand{font-family:'Sora';font-weight:800;font-size:18px;letter-spacing:.01em;display:flex;align-items:center;gap:10px}
+.brand .b{color:var(--accent)}
+.navlinks{display:flex;gap:32px;font-size:14px;color:var(--muted);font-weight:500}
+.navlinks a{transition:color .25s;position:relative}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--accent);transition:width .3s}
+.navlinks a:hover::after{width:100%}
+.nav-cta{font-size:13px;font-weight:600;padding:10px 20px;border:1px solid var(--line2);border-radius:6px;transition:.25s}
+.nav-cta:hover{background:var(--ink);color:#06080a;border-color:var(--ink)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+@media(max-width:860px){.navlinks,.nav-cta{display:none}.burger{display:flex}}
+
+/* hero */
+#hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02)}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,15,.55) 0%,rgba(10,12,15,.2) 35%,rgba(10,12,15,.55) 70%,var(--bg) 100%)}
+.hero-media::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,12,15,.7) 0%,rgba(10,12,15,.15) 45%,transparent 70%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(50px,9vh,90px)}
+.hero-loc{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);opacity:.85;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.hero-loc .pin{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.hero-h{font-family:'Sora';font-weight:800;font-size:clamp(40px,8vw,104px);line-height:.94;letter-spacing:-.03em;text-transform:uppercase}
+.hero-h span{display:block;overflow:hidden}
+.hero-h span i{display:block;font-style:normal;transform:translateY(105%)}
+.hero-h .accent{color:var(--accent)}
+.hero-sub{margin-top:28px;max-width:520px;color:#cfd6dd;font-size:clamp(15px,1.6vw,18px);font-weight:400}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:7px;font-size:15px;font-weight:600;transition:.25s;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--accent);color:#05080b}
+.btn-primary:hover{background:#7bbcec;transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line2);color:var(--ink)}
+.btn-ghost:hover{background:rgba(255,255,255,.06);border-color:var(--ink)}
+.hero-scroll{position:absolute;right:clamp(20px,4vw,56px);bottom:40px;z-index:2;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;writing-mode:vertical-rl}
+.hero-scroll .ln{width:1px;height:46px;background:linear-gradient(var(--accent),transparent);position:relative;writing-mode:horizontal-tb}
+@media(max-width:600px){.hero-scroll{display:none}}
+
+/* trust strip */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.strip .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;padding-top:26px;padding-bottom:26px}
+.strip .it{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.strip .it b{color:var(--ink);font-weight:600}
+.strip .it .ic{color:var(--accent);font-size:18px}
+
+/* section */
+section{position:relative}
+.pad{padding:clamp(80px,13vh,150px) 0}
+.head{max-width:720px;margin-bottom:60px}
+.head h2{font-family:'Sora';font-weight:800;font-size:clamp(30px,5vw,60px);line-height:1.02;letter-spacing:-.02em;text-transform:uppercase}
+.head h2 .a{color:var(--accent)}
+.head p{color:var(--muted);margin-top:20px;font-size:17px;max-width:560px}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:880px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+.svc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:30px;transition:.3s;position:relative;overflow:hidden}
+.svc:hover{border-color:var(--line2);transform:translateY(-4px)}
+.svc .n{font-size:12px;color:var(--muted2);letter-spacing:.18em;font-weight:600}
+.svc .ic{width:46px;height:46px;border-radius:10px;background:rgba(90,169,230,.1);border:1px solid rgba(90,169,230,.2);display:flex;align-items:center;justify-content:center;font-size:22px;margin:18px 0 16px}
+.svc h3{font-family:'Sora';font-weight:700;font-size:20px;margin-bottom:9px}
+.svc p{color:var(--muted);font-size:14.5px}
+
+/* feature band (full-bleed parallax image) */
+.band{position:relative;height:78vh;min-height:460px;overflow:hidden;display:flex;align-items:center}
+.band .bg{position:absolute;inset:-12% 0;z-index:0}
+.band .bg img,.band .bg video{width:100%;height:100%;object-fit:cover}
+.band::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--bg) 0%,rgba(10,12,15,.55) 45%,rgba(10,12,15,.2) 100%)}
+.band .wrap{position:relative;z-index:2}
+.band-card{max-width:540px}
+.band-card h2{font-family:'Sora';font-weight:800;font-size:clamp(28px,4.5vw,52px);line-height:1.04;text-transform:uppercase;letter-spacing:-.02em}
+.band-card h2 .a{color:var(--accent)}
+.band-card p{color:#cfd6dd;margin-top:20px;font-size:17px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+@media(max-width:720px){.stats{grid-template-columns:1fr 1fr;gap:40px 24px}}
+.stat .n{font-family:'Sora';font-weight:800;font-size:clamp(40px,6vw,68px);line-height:1;letter-spacing:-.02em}
+.stat .n .a{color:var(--accent)}
+.stat .l{color:var(--muted);font-size:14px;margin-top:10px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+.step{background:var(--bg);padding:30px 26px;min-height:190px;display:flex;flex-direction:column;transition:background .3s}
+.step:hover{background:var(--panel)}
+.step .k{font-family:'Sora';font-weight:800;font-size:15px;color:var(--accent);margin-bottom:auto}
+.step h4{font-size:18px;font-weight:600;margin:30px 0 8px}
+.step p{color:var(--muted);font-size:14px}
+
+/* brands */
+.brands{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+@media(max-width:880px){.brands{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.brands{grid-template-columns:repeat(2,1fr)}}
+.bc{background:var(--bg);aspect-ratio:1.9/1;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:15px;color:var(--muted);letter-spacing:.02em;transition:.3s}
+.bc:hover{background:var(--panel);color:var(--ink)}
+
+/* split / about */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:34px}}
+.split .ph{border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10}
+.split .ph img{width:100%;height:100%;object-fit:cover}
+.flist{list-style:none;display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.flist li{display:flex;gap:14px;color:var(--muted);font-size:15.5px}
+.flist b{color:var(--ink);font-weight:600}
+.flist .t{color:var(--accent);flex:none}
+
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.revs{grid-template-columns:1fr}}
+.rev{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.rev .st{color:var(--accent);letter-spacing:2px;font-size:13px}
+.rev p{font-size:15.5px;color:#dde3e9}
+.rev .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.rev .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dim));color:#06080a;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Sora'}
+.rev .who small{display:block;color:var(--muted2);font-size:12.5px}
+
+/* cta */
+.cta{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.cta .bg{position:absolute;inset:0;z-index:0}
+.cta .bg img{width:100%;height:100%;object-fit:cover;opacity:.4}
+.cta::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,12,15,.7),rgba(10,12,15,.92))}
+.cta-in{position:relative;z-index:2;padding:clamp(40px,7vw,84px)}
+.cta-in h2{font-family:'Sora';font-weight:800;font-size:clamp(30px,6vw,68px);line-height:.98;text-transform:uppercase;letter-spacing:-.02em}
+.cta-in h2 .a{color:var(--accent)}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
+@media(max-width:720px){.cgrid{grid-template-columns:1fr}}
+.ci{border-top:1px solid var(--line2);padding-top:18px}
+.ci .lab{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.ci .val{font-size:18px;font-weight:600;margin-top:8px}
+.ci .val small{display:block;color:var(--muted);font-weight:400;font-size:14px;margin-top:3px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:46px 0 36px;background:var(--bg)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:flex-end}
+.foot .big{font-family:'Sora';font-weight:800;font-size:clamp(34px,7vw,86px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.16)}
+.foot .meta{color:var(--muted);font-size:13.5px;line-height:1.9;text-align:right}
+.foot .meta a:hover{color:var(--accent)}
+.copy{margin-top:36px;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted2);font-size:12.5px}
+
+/* offer form + map */
+.offer{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:stretch}
+@media(max-width:860px){.offer{grid-template-columns:1fr}}
+.form-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,3vw,40px)}
+.form-card h3{font-family:'Sora';font-weight:800;font-size:clamp(22px,3vw,30px);text-transform:uppercase;letter-spacing:-.01em}
+.form-card .sb{color:var(--muted);font-size:14.5px;margin:10px 0 22px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;font-weight:600}
+.fld input,.fld select,.fld textarea{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:13px 14px;color:var(--ink);font-family:inherit;font-size:15px;transition:.2s}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(90,169,230,.15)}
+.fld textarea{resize:vertical;min-height:74px}
+.fld.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+@media(max-width:480px){.fld.row{grid-template-columns:1fr}}
+.form-card .btn{width:100%;justify-content:center;margin-top:8px}
+.form-note{font-size:12.5px;color:var(--muted2);margin-top:12px;text-align:center}
+.map-card{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:380px;display:flex;flex-direction:column}
+.map-card iframe{width:100%;flex:1;border:0;filter:grayscale(.3) invert(.92) hue-rotate(180deg) contrast(.9)}
+.map-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;background:var(--panel);border-top:1px solid var(--line)}
+.map-bar .a{font-size:14px}.map-bar .a b{display:block;font-family:'Sora';font-weight:700;font-size:15px}
+.map-bar small{color:var(--muted)}
+.map-bar a{font-size:13px;font-weight:600;color:var(--accent);white-space:nowrap}
+
+/* sticky call/whatsapp bar (mobile) */
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;gap:1px;background:var(--line);border-top:1px solid var(--line2);box-shadow:0 -8px 30px rgba(0,0,0,.4)}
+.callbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:15px;font-weight:700;font-size:15px}
+.callbar .call{background:var(--panel);color:var(--ink)}
+.callbar .wa{background:#1faa55;color:#fff}
+@media(max-width:860px){.callbar{display:flex}body{padding-bottom:54px}}
+/* floating whatsapp (desktop) */
+.wa-float{position:fixed;right:24px;bottom:24px;z-index:90;width:58px;height:58px;border-radius:50%;background:#1faa55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 30px rgba(31,170,85,.45);transition:transform .25s}
+.wa-float:hover{transform:scale(1.08)}
+@media(max-width:860px){.wa-float{display:none}}
+/* desktop nav phone */
+.nav-tel{font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px}
+.nav-tel .d{width:6px;height:6px;border-radius:50%;background:#1faa55;box-shadow:0 0 8px #1faa55}
+@media(max-width:860px){.nav-tel{display:none}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* mobile menu */
+#mob{position:fixed;inset:0;z-index:99;background:var(--bg);transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;font-family:'Sora';font-weight:700;font-size:26px;text-transform:uppercase}
+#mob.open{transform:none}
+#mob a{color:var(--muted)}#mob a:hover{color:var(--accent)}
+#mob .x{position:absolute;top:24px;right:26px;font-size:16px;color:var(--muted);cursor:pointer;letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="lmark">ANVELOTI<span class="b"> AUTO TIRES</span></div>
+  <div class="lbar"><i id="lbar"></i></div>
+  <div class="lsub">Service Anvelope Unirea</div>
+</div>
+
+<nav id="nav">
+  <div class="brand">ANVELOTI<span class="b">.</span></div>
+  <div class="navlinks">
+    <a href="#servicii">Servicii</a>
+    <a href="#performanta">Performanță</a>
+    <a href="#branduri">Branduri</a>
+    <a href="#despre">Despre</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="tel:+40740000000" class="nav-tel"><span class="d"></span>0740 000 000</a>
+  <a href="#oferta" class="nav-cta">Cere ofertă</a>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<div id="mob">
+  <span class="x" id="mobx">ÎNCHIDE ✕</span>
+  <a href="#servicii" class="ml">Servicii</a>
+  <a href="#performanta" class="ml">Performanță</a>
+  <a href="#branduri" class="ml">Branduri</a>
+  <a href="#despre" class="ml">Despre</a>
+  <a href="#contact" class="ml">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-media">
+    <video id="heroVid" autoplay muted loop playsinline poster="assets/corner.jpeg" preload="auto">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-loc"><span class="pin"></span>Unirea · Anvelope premium & service auto</div>
+    <h1 class="hero-h">
+      <span><i>Aderență</i></span>
+      <span><i class="accent">totală.</i></span>
+      <span><i>Control absolut.</i></span>
+    </h1>
+    <p class="hero-sub">Anvelope premium și service complet pentru orice anotimp și orice drum — montate corect, echilibrate la precizie, garantate.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Programează-te →</a>
+      <a href="#servicii" class="btn btn-ghost">Vezi serviciile</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>SCROLL</span><span class="ln"></span></div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="strip">
+  <div class="wrap">
+    <div class="it"><span class="ic">★</span><b>4.9/5</b> · 240+ recenzii Google</div>
+    <div class="it"><span class="ic">⏱</span> Set montat în <b>~20 min</b></div>
+    <div class="it"><span class="ic">🛡</span> Garanție pe fiecare lucrare</div>
+    <div class="it"><span class="ic">📦</span> Stoc real, dimensiuni populare</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="servicii" class="pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Ce facem</div>
+      <h2>Service complet <span class="a">de anvelope</span></h2>
+      <p>Tot ce are nevoie mașina ta, sub un singur acoperiș în Unirea — de la montaj sezonier la reparații de urgență.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="n">01</div><div class="ic">🛞</div><h3>Montaj & demontaj</h3><p>Echipamente automate care protejează janta și anvelopa, fără zgârieturi.</p></div>
+      <div class="svc reveal"><div class="n">02</div><div class="ic">⚖️</div><h3>Echilibrare</h3><p>Echilibrare electronică de precizie — zero vibrații și uzură uniformă la viteză.</p></div>
+      <div class="svc reveal"><div class="n">03</div><div class="ic">🔧</div><h3>Vulcanizare</h3><p>Reparații profesionale ale penelor, la cald și la rece, cu garanție pe lucrare.</p></div>
+      <div class="svc reveal"><div class="n">04</div><div class="ic">📐</div><h3>Geometrie roți</h3><p>Reglaj computerizat al direcției pentru ținută de drum perfectă și consum redus.</p></div>
+      <div class="svc reveal"><div class="n">05</div><div class="ic">🏨</div><h3>Hotel anvelope</h3><p>Depozitare în condiții optime de temperatură și umiditate. Le păstrăm și le aducem noi.</p></div>
+      <div class="svc reveal"><div class="n">06</div><div class="ic">❄️</div><h3>Schimb sezonier</h3><p>Vară ⇄ iarnă rapid, programat online — fără cozi și fără timp pierdut.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE BAND (video / image parallax) -->
+<section id="performanta" class="band">
+  <div class="bg" data-parallax>
+    <video id="gripVid" autoplay muted loop playsinline poster="assets/tire_macro_b.jpeg" preload="auto">
+      <source src="assets/grip.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap">
+    <div class="band-card reveal">
+      <div class="eyebrow">De ce contează</div>
+      <h2>Patru petice de cauciuc <span class="a">între tine și drum</span></h2>
+      <p>Singura legătură a mașinii cu asfaltul sunt anvelopele. Pe ploaie, pe gheață și în viraj, ele decid distanța de frânare. Noi montăm anvelopa potrivită, corect — ca să ai control când contează.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="pad">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><div class="n" data-count="16">0</div><div class="l">Ani de experiență</div></div>
+      <div class="stat reveal"><div class="n"><span data-count="48">0</span><span class="a">K</span></div><div class="l">Anvelope montate</div></div>
+      <div class="stat reveal"><div class="n" data-count="240">0<span class="a">+</span></div><div class="l">Recenzii cu 5★</div></div>
+      <div class="stat reveal"><div class="n" data-count="20">0<span class="a">′</span></div><div class="l">Minute / set montat</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO SEDAN BAND (the 21:9 still) -->
+<section class="band" style="height:70vh">
+  <div class="bg" data-parallax><img src="assets/hero_a.jpeg" alt="Performanță pe drum ud" loading="lazy"></div>
+  <div class="wrap">
+    <div class="band-card reveal" style="margin-left:auto;text-align:right">
+      <div class="eyebrow" style="justify-content:flex-end">Orice drum, orice vreme</div>
+      <h2>Pregătit pentru <span class="a">orice drum</span></h2>
+      <p style="margin-left:auto">Serpentine, ploaie, gheață, pavaj. Te echipăm pentru drumurile reale de pe aici — nu doar pentru autostradă.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Cum lucrăm</div>
+      <h2>Patru pași, <span class="a">zero stres</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="k">01</div><h4>Programare online</h4><p>Alegi ziua și ora în câteva secunde. Confirmare pe loc, fără telefoane.</p></div>
+      <div class="step reveal"><div class="k">02</div><h4>Diagnoză gratuită</h4><p>Verificăm uzura, presiunea și starea jantelor înainte de orice.</p></div>
+      <div class="step reveal"><div class="k">03</div><h4>Montaj de precizie</h4><p>Echipamente automate și echilibrare electronică. Curat și rapid.</p></div>
+      <div class="step reveal"><div class="k">04</div><h4>Garanție & control</h4><p>Strângere la cuplul corect, bon și garanție. Pleci în siguranță.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="branduri" class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Parteneri</div>
+      <h2>Branduri pe care <span class="a">le montăm</span></h2>
+      <p>De la premium la alternative inteligente — pentru orice buget și orice stil de condus.</p>
+    </div>
+    <div class="brands reveal">
+      <div class="bc">MICHELIN</div><div class="bc">CONTINENTAL</div><div class="bc">BRIDGESTONE</div>
+      <div class="bc">PIRELLI</div><div class="bc">GOODYEAR</div><div class="bc">HANKOOK</div>
+      <div class="bc">DUNLOP</div><div class="bc">NOKIAN</div><div class="bc">FALKEN</div>
+      <div class="bc">YOKOHAMA</div><div class="bc">KUMHO</div><div class="bc">BARUM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / SPLIT -->
+<section id="despre" class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <div class="ph reveal"><img src="assets/service.png" alt="Service Auto Anveloti Unirea" loading="lazy"></div>
+      <div class="reveal">
+        <div class="eyebrow">De ce Anveloti</div>
+        <h2 class="display" style="font-weight:800;font-size:clamp(28px,4.4vw,50px);text-transform:uppercase">Oameni serioși,<br><span style="color:var(--accent)">lucrare serioasă</span></h2>
+        <p style="color:var(--muted);margin-top:18px;font-size:16.5px">Din 2009 punem mașinile din Unirea pe roți de încredere. Nu vindem doar anvelope — vindem liniștea de a ști că ai aderență exact când ai nevoie de ea.</p>
+        <ul class="flist">
+          <li><span class="t">◆</span><span><b>Prețuri corecte</b> — ofertă clară înainte de montaj, fără surprize.</span></li>
+          <li><span class="t">◆</span><span><b>Stoc real</b> — cele mai căutate dimensiuni, disponibile pe loc.</span></li>
+          <li><span class="t">◆</span><span><b>Tehnicieni cu experiență</b> — lucrare făcută corect, nu improvizată.</span></li>
+          <li><span class="t">◆</span><span><b>Garanție pe lucrare</b> — răspundem pentru fiecare set montat.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Recenzii reale</div>
+      <h2>Ce spun <span class="a">șoferii</span></h2>
+    </div>
+    <div class="revs">
+      <div class="rev reveal"><div class="st">★★★★★</div><p>„Rapizi, corecți și profesioniști. Am schimbat tot setul în 20 de minute, programat online. Recomand!”</p><div class="who"><div class="av">A</div><div>Andrei M.<small>Toyota Corolla</small></div></div></div>
+      <div class="rev reveal"><div class="st">★★★★★</div><p>„Cei mai serioși din Unirea. Mi-au explicat exact ce uzură aveam, fără cheltuieli inutile. Oameni de încredere.”</p><div class="who"><div class="av">R</div><div>Raluca P.<small>VW Golf</small></div></div></div>
+      <div class="rev reveal"><div class="st">★★★★★</div><p>„Hotelul de anvelope e genial — nu mai car nimic prin garaj. Le las la ei și gata. Service la nivel premium.”</p><div class="who"><div class="av">S</div><div>Szabolcs K.<small>BMW Seria 3</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER FORM + MAP -->
+<section id="oferta" class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">Hai să vorbim</div>
+      <h2>Cere o <span class="a">ofertă rapidă</span></h2>
+      <p>Completează în 20 de secunde — îți răspundem pe WhatsApp cu prețul și prima oră liberă.</p>
+    </div>
+    <div class="offer">
+      <div class="form-card reveal">
+        <h3>Cere ofertă</h3>
+        <div class="sb">Fără obligații. Îți trimitem prețul și disponibilitatea.</div>
+        <form id="oferForm" novalidate>
+          <div class="fld row">
+            <div class="fld"><label>Nume</label><input name="nume" type="text" placeholder="Ex. Andrei" required></div>
+            <div class="fld"><label>Telefon</label><input name="tel" type="tel" inputmode="tel" placeholder="07xx xxx xxx" required></div>
+          </div>
+          <div class="fld row">
+            <div class="fld">
+              <label>Serviciu</label>
+              <select name="serviciu">
+                <option>Anvelope noi + montaj</option>
+                <option>Schimb sezonier (vară/iarnă)</option>
+                <option>Vulcanizare / reparație</option>
+                <option>Echilibrare</option>
+                <option>Geometrie roți</option>
+                <option>Hotel anvelope</option>
+              </select>
+            </div>
+            <div class="fld"><label>Dimensiune anvelopă</label><input name="dim" type="text" placeholder="Ex. 205/55 R16"></div>
+          </div>
+          <div class="fld"><label>Mesaj (opțional)</label><textarea name="msg" placeholder="Marca mașinii, întrebări, etc."></textarea></div>
+          <button type="submit" class="btn btn-primary">Trimite pe WhatsApp →</button>
+          <div class="form-note">Se deschide WhatsApp cu mesajul completat. (demo)</div>
+        </form>
+      </div>
+      <div class="map-card reveal">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=23.800%2C46.240%2C23.905%2C46.290&layer=mapnik&marker=46.2650%2C23.8520" loading="lazy" title="Hartă Auto Anveloti Unirea"></iframe>
+        <div class="map-bar">
+          <div class="a"><b>Auto Anveloti</b><small>Unirea, jud. Alba</small></div>
+          <a href="https://www.google.com/maps/search/Auto+Anveloti+Unirea" target="_blank" rel="noopener">📍 Deschide în Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / CTA -->
+<section id="contact" class="pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta reveal">
+      <div class="bg"><img src="assets/hero_b.jpeg" alt=""></div>
+      <div class="cta-in">
+        <div class="eyebrow">Hai la noi</div>
+        <h2>Programează-te și<br>pleci pe <span class="a">roți noi.</span></h2>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="tel:+40740000000">📞 Sună acum</a>
+          <a class="btn btn-ghost" href="#oferta">🗓️ Cere ofertă</a>
+        </div>
+        <div class="cgrid">
+          <div class="ci"><div class="lab">Locație</div><div class="val">Unirea<small>Județul Alba</small></div></div>
+          <div class="ci"><div class="lab">Program</div><div class="val">Luni–Vineri 08–18<small>Sâmbătă 08–14</small></div></div>
+          <div class="ci"><div class="lab">Online</div><div class="val">Auto Anveloti<small>Facebook & Google Maps</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="big">ANVELOTI</div>
+      <div class="meta">
+        Service Anvelope Unirea<br>
+        Aderență totală. Control absolut.<br>
+        <a href="https://www.facebook.com/anveloti/" target="_blank" rel="noopener">Facebook ↗</a> · Google Maps ↗
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Auto Anveloti · Toate drepturile rezervate</span>
+      <span>Demo de prezentare · imagini generate AI</span>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky call/whatsapp (mobile) + floating wa (desktop) -->
+<div class="callbar">
+  <a class="call" href="tel:+40740000000">📞 Sună acum</a>
+  <a class="wa" id="waBar" href="https://wa.me/40740000000" target="_blank" rel="noopener">💬 WhatsApp</a>
+</div>
+<a class="wa-float" id="waFloat" href="https://wa.me/40740000000" target="_blank" rel="noopener" aria-label="Scrie-ne pe WhatsApp">💬</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // === contact config (schimbă aici numărul real) ===
+  var WA_NUMBER = "40740000000"; // format internațional fără +, ex. 407xxxxxxxx
+
+  // form -> WhatsApp prefilled message (demo, fără backend)
+  var form=document.getElementById('oferForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var d=new FormData(form);
+      var nume=(d.get('nume')||'').trim(), tel=(d.get('tel')||'').trim();
+      if(!nume||!tel){alert('Te rog completează numele și telefonul.');return;}
+      var txt="Bună! Aș dori o ofertă.\n"
+        +"• Nume: "+nume+"\n"
+        +"• Telefon: "+tel+"\n"
+        +"• Serviciu: "+(d.get('serviciu')||'-')+"\n"
+        +"• Dimensiune: "+((d.get('dim')||'').trim()||'-')+"\n"
+        +(((d.get('msg')||'').trim())?("• Mesaj: "+d.get('msg').trim()+"\n"):"");
+      window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(txt),"_blank");
+    });
+  }
+
+  // loader
+  var loader=document.getElementById('loader'), lbar=document.getElementById('lbar'), p=0;
+  var li=setInterval(function(){p+=Math.random()*18;if(p>=100){p=100;clearInterval(li);}lbar.style.width=p+'%';},110);
+  function done(){lbar.style.width='100%';setTimeout(function(){loader.classList.add('hide');hero();},350);}
+  window.addEventListener('load',function(){setTimeout(done,450);});
+  setTimeout(function(){loader.classList.add('hide');hero();},3800);
+
+  // hero text
+  function hero(){
+    if(reduce){document.querySelectorAll('.hero-h i').forEach(function(s){s.style.transform='none';});return;}
+    if(window.gsap) gsap.to('.hero-h i',{y:'0%',duration:1.05,ease:'expo.out',stagger:.1,delay:.05});
+  }
+
+  // nav
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40);});
+
+  // mobile menu
+  var mob=document.getElementById('mob');
+  document.getElementById('burger').onclick=function(){mob.classList.add('open');};
+  document.getElementById('mobx').onclick=function(){mob.classList.remove('open');};
+  document.querySelectorAll('.ml').forEach(function(a){a.onclick=function(){mob.classList.remove('open');};});
+
+  // reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // count up
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target=+el.dataset.count, ran=false;
+    new IntersectionObserver(function(es,ob){es.forEach(function(e){
+      if(e.isIntersecting&&!ran){ran=true;var t0=performance.now();
+        (function tick(now){var k=Math.min((now-t0)/1400,1);el.firstChild.nodeValue=Math.floor((1-Math.pow(1-k,3))*target);if(k<1)requestAnimationFrame(tick);})(t0);
+        ob.disconnect();}
+    });},{threshold:.5}).observe(el);
+  });
+
+  // parallax bands
+  if(window.gsap && window.ScrollTrigger && !reduce){
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('[data-parallax]').forEach(function(el){
+      gsap.fromTo(el,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:el.closest('.band'),start:'top bottom',end:'bottom top',scrub:true}});
+    });
+  }
+
+  // if a hero/grip video has no real source (poster only), keep poster — nothing to do.
+  // pause offscreen videos to save CPU
+  document.querySelectorAll('video').forEach(function(v){
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){v.play&&v.play().catch(function(){});}else{v.pause&&v.pause();}
+    });},{threshold:.05}).observe(v);
+  });
+})();
+</script>
+</body>
+</html>
